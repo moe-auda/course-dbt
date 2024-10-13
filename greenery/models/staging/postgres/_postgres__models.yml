@@ -1,0 +1,17 @@
+version: 2
+
+models:
+      - name: stg_postgress__events
+        descripton: "a model with user events"  
+      - name: stg_postgress__orders
+        descripton: "a model with users orders"     
+      - name: stg_postgress__order_items
+        descripton: "a model with order info"      
+      - name: stg_postgress__addresses
+        descripton: "a model with users addresses"     
+      - name: stg_postgress__products
+        descripton: "a mode with product info"     
+      - name: stg_postgress__promos
+        descripton: "a model with promo info"    
+      - name: stg_postgress__users
+        descripton: "a model with user info"
