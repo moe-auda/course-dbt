@@ -1,7 +1,14 @@
-SELECT
-    ADDRESS_ID,
-	ADDRESS,
-	ZIPCODE,
-	STATE,
-	COUNTRY
-FROM {{ source('postgres', 'addresses') }}
+{{
+config(
+materialized='table'
+)
+}}
+
+
+select
+    address_id,
+	address,
+	zipcode,
+	state,
+	country
+from {{ source('postgres', 'addresses') }}

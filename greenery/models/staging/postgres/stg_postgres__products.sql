@@ -1,6 +1,13 @@
-SELECT
-	PRODUCT_ID,
-	NAME as product_name,
-	PRICE,
-	INVENTORY
-FROM {{ source('postgres', 'products') }}
+{{
+config(
+materialized='table'
+)
+}}
+
+
+select
+	product_id,
+	name as product_name,
+	price,
+	inventory
+from {{ source('postgres', 'products') }}

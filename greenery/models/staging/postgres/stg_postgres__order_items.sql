@@ -1,5 +1,12 @@
-SELECT
-	ORDER_ID,
-	PRODUCT_ID,
-	QUANTITY
-FROM {{ source('postgres', 'order_items')}}
+{{
+config(
+materialized='table'
+)
+}}
+
+
+select
+	order_id,
+	product_id,
+	quantity
+from {{ source('postgres', 'order_items')}}
