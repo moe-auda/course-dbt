@@ -13,16 +13,21 @@ session_timing_agg as(
    select * from {{ ref('int_session_timings') }}
 )
 
+
+{% set event_types = dbt_utils.get_column_values(
+        table=ref('stg_postgres__events'), 
+        column='event_type'
+)  %}
+
 select
     e.session_id,
     e.user_id,
     coalesce(e.product_id, oi.product_id) as product_id,
     session_start,
     session_end,
-    sum(case when e.event_type = 'page_view' then 1 else 0 end) as page_views,
-    sum(case when e.event_type = 'add_to_cart' then 1 else 0 end) as add_to_cart,
-    sum(case when e.event_type = 'checkout' then 1 else 0 end) as checkout,
-    sum(case when e.event_type = 'package_shipped' then 1 else 0 end) as package_shipped,
+    {% for event_type in event_types %}
+    {{ sum_of('e.event_type', event_type)}} as {{ event_type }},
+    {% endfor%}
     datediff('minute', session_start, session_end) as session_length_minutes
 
 from events e

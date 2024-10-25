@@ -2,7 +2,7 @@ version: 2
 
 models:
       - name: stg_postgres__events
-        descripton: "a model with user events"
+        description: "a model with user events"
         columns:
           - name: event_id
             tests:
@@ -22,14 +22,19 @@ models:
                     - add_to_cart
                     - page_view
       - name: stg_postgres__orders
-        descripton: "a model with users orders"
+        description: "a model with users orders"
         columns:
           - name: order_id
             tests:
               - unique
               - not_null
+          - name: order_total
+            tests: 
+              - dbt_utils.accepted_range:
+                  min_value: 0
+                  max_value: 1000
       - name: stg_postgres__order_items
-        descripton: "a model with order info"
+        description: "a model with order info"
         columns:
           - name: order_id
             tests:
@@ -38,7 +43,7 @@ models:
             tests:
               - not_null          
       - name: stg_postgres__addresses
-        descripton: "a model with users addresses"     
+        description: "a model with users addresses"     
         columns:
           - name: address_id
             tests:
@@ -48,21 +53,21 @@ models:
             tests:
               - not_null
       - name: stg_postgres__products
-        descripton: "a mode with product info"
+        description: "a mode with product info"
         columns:
           - name: product_id
             tests:
               - unique
               - not_null         
       - name: stg_postgres__promos
-        descripton: "a model with promo info"
+        description: "a model with promo info"
         columns:
           - name: promo_id
             tests:
               - unique
               - not_null    
       - name: stg_postgres__users
-        descripton: "a model with user info"
+        description: "a model with user info"
         columns:
           - name: user_id
             tests:
