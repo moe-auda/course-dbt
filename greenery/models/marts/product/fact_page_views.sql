@@ -35,4 +35,4 @@ left join order_items oi
     on oi.order_id = e.order_id
 left join session_timing_agg s
     on s.session_id = e.session_id
-group by 1,2,3,4,5
+group by 1,2,3,4,5,6
