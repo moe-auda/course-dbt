@@ -1,0 +1,19 @@
+version: 2
+
+exposures:
+
+  - name: product funnel
+    label: Product Funnel of Greenery Data
+    type: dashboard
+    maturity: high
+    url: https://app.sigmacomputing.com/corise-dbt/workbook/My-Workbook-7jHk1SfXC5LGYikmD5SNMv/edit?:nodeId=T1v4q765YI
+    description: >
+      this dashboard shows the product funnel of Greenery data
+
+    depends_on:
+      - ref('fact_page_views')
+
+
+    owner:
+      name: Mohammad Abou-Auda
+      email: moe93@live.com
